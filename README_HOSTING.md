@@ -14,11 +14,15 @@ Open the **Terminal** in your cPanel and run:
 git clone https://github.com/aritra404013/food-del.git
 cd food-del
 
-# Install pnpm (cPanel safe method)
-npm install -g pnpm
+# Install pnpm locally (Fail-safe for cPanel)
+npm install pnpm
 
-# Verify install
-pnpm --version
+# Verify install using local path
+./node_modules/.bin/pnpm --version
+
+# Use this command for all pnpm steps:
+# Alias it for convenience:
+alias pnpm="./node_modules/.bin/pnpm"
 
 # Install dependencies for all services
 pnpm install
