@@ -32,7 +32,7 @@ export const loginUser = TryCatch(async (req, res) => {
       name,
       email,
       image: picture,
-      role: email === ADMIN_EMAIL ? "admin" : undefined,
+      ...(email === ADMIN_EMAIL && { role: "admin" }),
     });
   } else if (email === ADMIN_EMAIL && user.role !== "admin") {
     // Ensure admin role is always enforced even for existing users
