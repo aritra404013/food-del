@@ -42,6 +42,8 @@ const SelectRole = () => {
         { role },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
+      // Save fresh token so backend sees the updated role immediately
+      if (data.token) localStorage.setItem("token", data.token);
       setUser(data.user);
       toast.success(`Welcome as ${role}!`);
       navigate("/");
