@@ -17,12 +17,15 @@ cd food-del
 # Install pnpm locally (Fail-safe for cPanel)
 npm install pnpm
 
-# Verify install using local path
-./node_modules/.bin/pnpm --version
+# Go to the root folder
+cd ~/food-del
 
-# Use this command for all pnpm steps:
-# Alias it for convenience:
-alias pnpm="./node_modules/.bin/pnpm"
+# Set a permanent absolute alias for pnpm
+echo "alias pnpm=\"$(pwd)/node_modules/.bin/pnpm\"" >> ~/.bashrc
+source ~/.bashrc
+
+# Now 'pnpm' will work from ANY folder!
+pnpm --version
 
 # Install dependencies for all services
 pnpm install
