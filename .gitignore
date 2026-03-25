@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+
+# Environment variables - NEVER commit these
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+error.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Lock files from other package managers (using pnpm)
+package-lock.json
+yarn.lock
+
+# Next.js
+.next/
+out/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Coverage
+coverage/

@@ -1,0 +1,20 @@
+{
+  "name": "tomato-code-root",
+  "version": "1.0.0",
+  "description": "Root package for managing Zomato Clone services and frontend",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm run dev:auth\" \"pnpm run dev:admin\" \"pnpm run dev:realtime\" \"pnpm run dev:restaurant\" \"pnpm run dev:rider\" \"pnpm run dev:utils\" \"pnpm run dev:frontend\"",
+    "dev:auth": "pnpm --dir services/auth run dev",
+    "dev:admin": "pnpm --dir services/admin run dev",
+    "dev:realtime": "pnpm --dir services/realtime run dev",
+    "dev:restaurant": "pnpm --dir services/restaurant run dev",
+    "dev:rider": "pnpm --dir services/rider run dev",
+    "dev:utils": "pnpm --dir services/utils run dev",
+    "dev:frontend": "pnpm --dir frontend run dev",
+    "dev:backend": "concurrently \"pnpm run dev:auth\" \"pnpm run dev:admin\" \"pnpm run dev:realtime\" \"pnpm run dev:restaurant\" \"pnpm run dev:rider\" \"pnpm run dev:utils\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

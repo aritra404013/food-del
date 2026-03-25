@@ -1,0 +1,3 @@
+check my package.json and the services folder with npm is not working because of the microservices archi..
+so no chnage the the package.json from npm to pnpm and the services folder to run the my whole backend services run smoothly in the require ports
+modify all the package.json in the service folder 
