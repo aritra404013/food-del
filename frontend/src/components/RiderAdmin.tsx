@@ -9,7 +9,7 @@ const RiderAdmin = ({ rider, onVerify }: { rider: any; onVerify: () => void }) =
   const verify = async () => {
     try {
       setLoading(true);
-      await axios.patch(`${adminService}/api/v1/admin/rider/verify/${rider._id}`, {}, {
+      await axios.patch(`${adminService}/api/v1/verify/rider/${rider._id}`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       toast.success("Rider verified!");

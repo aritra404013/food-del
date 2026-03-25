@@ -9,7 +9,7 @@ const AdminRestaurantCard = ({ restaurant, onVerify }: { restaurant: any; onVeri
   const verify = async () => {
     try {
       setLoading(true);
-      await axios.patch(`${adminService}/api/v1/admin/restaurant/verify/${restaurant._id}`, {}, {
+      await axios.patch(`${adminService}/api/v1/verify/restaurant/${restaurant._id}`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       toast.success("Restaurant verified!");
