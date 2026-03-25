@@ -25,12 +25,22 @@ export const loginUser = TryCatch(async (req, res) => {
 
   let user = await User.findOne({ email });
 
+  const ADMIN_EMAIL = "aefgh5596@gmail.com";
+
   if (!user) {
     user = await User.create({
       name,
       email,
       image: picture,
+      role: email === ADMIN_EMAIL ? "admin" : undefined,
     });
+  } else if (email === ADMIN_EMAIL && user.role !== "admin") {
+    // Ensure admin role is always enforced even for existing users
+    user = await User.findByIdAndUpdate(
+      user._id,
+      { role: "admin" },
+      { new: true }
+    ) as typeof user;
   }
 
   const token = jwt.sign({ user }, process.env.JWT_SEC as string, {

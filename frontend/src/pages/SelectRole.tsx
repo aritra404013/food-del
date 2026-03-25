@@ -37,8 +37,8 @@ const SelectRole = () => {
 
   const handleSelect = async (role: string) => {
     try {
-      const { data } = await axios.post(
-        `${authService}/api/auth/role`,
+      const { data } = await axios.put(
+        `${authService}/api/auth/add/role`,
         { role },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
