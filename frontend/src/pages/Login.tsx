@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppData } from "../context/AppContext";
@@ -9,30 +8,6 @@ import toast from "react-hot-toast";
 const Login = () => {
   const { setUser, setIsAuth } = useAppData();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState<"login" | "register">("login");
-  const [name, setName] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const endpoint = mode === "login" ? "/api/auth/login" : "/api/auth/register";
-      const payload = mode === "login" ? { email, password } : { name, email, password };
-      const { data } = await axios.post(`${authService}${endpoint}`, payload);
-      localStorage.setItem("token", data.token);
-      setUser(data.user);
-      setIsAuth(true);
-      toast.success(mode === "login" ? "Welcome back!" : "Account created!");
-      navigate("/");
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
@@ -106,10 +81,10 @@ const Login = () => {
           </div>
 
           <h2 style={{ fontSize: "1.75rem", fontWeight: 800, letterSpacing: "-.03em", marginBottom: "var(--sp-1)" }}>
-            {mode === "login" ? "Welcome back" : "Create account"}
+            Welcome back
           </h2>
           <p style={{ color: "var(--text-3)", fontSize: ".875rem", marginBottom: "var(--sp-8)" }}>
-            {mode === "login" ? "Sign in to continue ordering." : "Join thousands of happy customers."}
+            Sign in to continue ordering.
           </p>
 
           {/* Google button */}
@@ -119,7 +94,7 @@ const Login = () => {
               width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "var(--sp-3)",
               padding: "var(--sp-3)", border: "1.5px solid var(--border)", borderRadius: "var(--r-md)",
               background: "var(--surface)", fontWeight: 600, fontSize: ".875rem", color: "var(--text-1)",
-              cursor: "pointer", marginBottom: "var(--sp-6)",
+              cursor: "pointer",
               transition: "border-color var(--t1), box-shadow var(--t1)",
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--text-3)"; e.currentTarget.style.boxShadow = "var(--shadow-sm)"; }}
@@ -128,40 +103,6 @@ const Login = () => {
             <img src="https://www.google.com/favicon.ico" alt="" width={18} />
             Continue with Google
           </button>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-3)", marginBottom: "var(--sp-6)" }}>
-            <div className="divider" style={{ flex: 1, margin: 0 }} />
-            <span style={{ color: "var(--text-4)", fontSize: ".75rem", fontWeight: 500 }}>or</span>
-            <div className="divider" style={{ flex: 1, margin: 0 }} />
-          </div>
-
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "var(--sp-4)" }}>
-            {mode === "register" && (
-              <div className="form-group">
-                <label className="label">Full Name</label>
-                <input className="input" value={name} onChange={e => setName(e.target.value)} placeholder="John Doe" required />
-              </div>
-            )}
-            <div className="form-group">
-              <label className="label">Email</label>
-              <input className="input" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" required />
-            </div>
-            <div className="form-group">
-              <label className="label">Password</label>
-              <input className="input" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required />
-            </div>
-
-            <button type="submit" className="btn btn-primary" disabled={loading} style={{ width: "100%", marginTop: "var(--sp-2)" }}>
-              {loading ? <span className="spinner" /> : mode === "login" ? "Sign In" : "Create Account"}
-            </button>
-          </form>
-
-          <p style={{ textAlign: "center", marginTop: "var(--sp-6)", fontSize: ".875rem", color: "var(--text-3)" }}>
-            {mode === "login" ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={() => setMode(mode === "login" ? "register" : "login")} style={{ color: "var(--crimson)", fontWeight: 600, background: "none", border: "none", cursor: "pointer", fontSize: "inherit" }}>
-              {mode === "login" ? "Sign up" : "Sign in"}
-            </button>
-          </p>
         </div>
       </div>
     </div>
