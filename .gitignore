@@ -5,10 +5,7 @@ node_modules/
 # Build output
 dist/
 
-# Environment variables - NEVER commit these
-.env
-.env.*
-!.env.example
+
 
 # Logs
 *.log
