@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Root package for managing Zomato Clone services and frontend",
   "private": true,
+  "packageManager": "pnpm@9.0.0"
   "scripts": {
     "dev": "concurrently \"pnpm run dev:auth\" \"pnpm run dev:admin\" \"pnpm run dev:realtime\" \"pnpm run dev:restaurant\" \"pnpm run dev:rider\" \"pnpm run dev:utils\" \"pnpm run dev:frontend\"",
     "dev:auth": "pnpm --dir services/auth run dev",
